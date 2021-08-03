@@ -4,34 +4,44 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-navbar',
   template: `
     <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg rounded-bottom">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Vini</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+          <a class="navbar-brand fs-3 text-white" href="#">
+            Vini 
+           <img class="mb-3" width="20" height="36" src="https://www.freeiconspng.com/thumbs/wine-glass-png/wine-glass-png-image-5.png" alt="">
+          </a>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Homepage</a>
+                <a class="nav-link active text-white" aria-current="page" routerLink='/home' routerLinkActive="active">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Products</a>
+                <a class="nav-link text-white" routerLink='/products' routerLinkActive="active">Products</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
-              </li>
-              <li class="nav-item">
-                  <i class="fa fa-shopping-cart"></i> 
-              </li>
+              
             </ul>
           </div>
         </div>
+        <div class="d-flex">
+        <li class="nav-item d-flex justify-content-end">
+                <a class="nav-link text-white" routerLink='/profile' routerLinkActive="active">
+                  <i class="fa fa-user fs-5"></i>
+                </a>
+              </li>
+              <li class="nav-item d-flex justify-content-end">
+                  <a class="nav-link active text-white" routerLink='/cart' routerLinkActive="active">
+                  <i class="fs-5 fa fa-shopping-cart"></i>
+              </a> 
+              </li>
+          </div>
       </nav>
-
     </div>
   `,
-  styles: [
+  styles: [`
+    .bg {
+      background-color: #275572;
+     }
+     `
   ]
 })
 export class NavbarComponent implements OnInit {

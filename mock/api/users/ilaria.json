@@ -1,0 +1,8 @@
+{
+    "name": "Ilaria",
+    "Lastname": "Galliano",
+    "shippingAddress": {
+        "city": "Como",
+        "street": "Via como"
+    }
+}

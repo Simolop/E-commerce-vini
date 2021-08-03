@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
 
 <app-navbar></app-navbar>
   <div class="container">
-    <h1>{{ title }}</h1>
+      <router-outlet></router-outlet> 
   </div>
-    
+
   `,
   styles: []
 })

@@ -1,0 +1,24 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Montepulciano",
+        "price": 6,
+        "category": "red wine"
+      },
+      {
+        "id": 2,
+        "name": "Vermentino",
+        "price": 8,
+        "category": "white wine"
+      },
+      {
+        "id": 3,
+        "name": "Nero d'Avola",
+        "price": 4,
+        "category": "red wine"
+      }
+    ]
+  }
+  
+  
