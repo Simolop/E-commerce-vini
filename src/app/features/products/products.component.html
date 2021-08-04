@@ -1,0 +1,39 @@
+<div class="container">
+    <h1 class="mt-3 mb-3">Our Wines</h1>
+
+    <div class='table-responsive'>
+
+      <table class='table' *ngIf='products'>
+
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Available</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor='let product of products'>
+            <td>
+              <img 
+                    [src]='product.imageUrl'
+                    [title]='product.productName'
+                    [style.width.px]='imageWidth'
+                    [style.margin.px]='imageMargin'>
+            </td>
+
+            <td> 
+              <a [routerLink]="['/products', product.id]">
+                {{product.name}}
+              </a>
+            </td>
+            <td> {{product.price}}</td>
+            <td> 
+            </td>
+          </tr>
+        </tbody>        
+      </table>
+    </div>
+    
+</div>
