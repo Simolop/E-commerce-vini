@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light bg rounded-bottom">
         <div class="container-fluid">
-          <a class="navbar-brand fs-3 text-white" href="#">
+          <a class="navbar-brand fs-3 text-white" href="/home">
             Vini 
            <img class="mb-3" width="20" height="36" src="https://www.freeiconspng.com/thumbs/wine-glass-png/wine-glass-png-image-5.png" alt="">
           </a>
