@@ -4,4 +4,5 @@ export interface IProduct {
     "price" : number,
     "image" : any,
     "category": string,
+    "description": string;
 }

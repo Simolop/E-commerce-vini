@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ArchiveService } from 'src/app/archive.service';
 import { IProduct } from 'src/app/model/products';
@@ -10,7 +11,42 @@ import { IProduct } from 'src/app/model/products';
   ]
 })
 
-export class ProductsComponent implements OnInit, OnDestroy {
+
+export class ProductsComponent  {
+  products: IProduct[] | undefined;
+  URL = 'http://localhost:3000';
+  public isCollapsed: boolean = true;
+
+  constructor(private http: HttpClient) {
+    this.init();
+  }
+ /*  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  } */
+
+  init() {
+    this.http.get<IProduct[]>(this.URL + '/products')
+      .subscribe((res: any[] | undefined) => {
+        this.products = res;
+      });
+  }
+
+}
+
+
+/* export class ProductsComponent implements OnInit {
+  products: Array<IProduct>;
+
+  constructor(private s: ArchiveService) { 
+    this.products = s.listProducts;
+  }
+
+  ngOnInit(): void {
+  }
+
+} */
+
+/* export class ProductsComponent implements OnInit, OnDestroy {
   products: IProduct | undefined;
   listProducts: IProduct | undefined;
 
@@ -36,4 +72,4 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-}
+} */
