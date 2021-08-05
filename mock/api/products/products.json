@@ -22,5 +22,13 @@
       "category": "red wine",
       "image": "https://www.vinisantafrancesca.it/wp-content/uploads/2017/06/vermentino-4.jpg",
       "description": "Il Vino Nero d'avola è un vino rosso proveniente dalla terra di Sicilia, sapore forte e avvolgente. Perfetto per primi e piatti a base di carne. Sapore possente e rotondo"
+    },
+    {
+      "id": 4,
+      "name": "Piemonte Rosato DOC",
+      "price": 8,
+      "category": "rose",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_Kb8oCPhtP2hWRUHV8ZU_z0GzklweK4BrvA&usqp=CAU",
+      "description": "Il Derosis di Villa Lanata, prodotto esclusivamente con uve nebbiolo e lavorato in acciaio, è un Rosato profumatissimo. Impreziosito dall'inconfondibile personalità dell'uva natia, è delizioso alla beva e molto appagante"
     }
   ]

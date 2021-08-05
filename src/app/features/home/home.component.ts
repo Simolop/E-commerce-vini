@@ -8,10 +8,9 @@ import { UserService } from 'src/app/user.service';
   selector: 'app-home',
   template: `
     <div class="container">
-        <!-- <h1>Welcome {{ user?.name }}</h1> -->
-        <h2 class="mt-3 text-center mb-4">Welcome to our Wine cellar</h2>
-        <img class="rounded mx-auto d-block" width="1000" src="https://cdn.pixabay.com/photo/2016/10/22/20/34/wines-1761613__340.jpg" alt="">
-    </div>
+        <h2 class="mt-3 text-center mb-4">Welcome {{ user?.name }} to our Wine cellar</h2>
+        <img class="rounded mx-auto d-block" width="1000" src="https://wips.plug.it/cips/initalia.virgilio.it/cms/2020/09/migliori-vini-photo.jpg" alt="">
+        <!-- <img class="rounded mx-auto d-block" width="1000" src="https://www.confagricolturafoggia.it/wp-content/uploads/2020/03/vino-2015.jpg" alt="">  -->
   `,
   styles: [
   ]
@@ -43,8 +42,5 @@ export class HomeComponent implements OnInit {
           })  
         }
       })
-  
-  
     }
-
 }

@@ -1,4 +1,5 @@
 export interface IProduct {
+    visible: boolean;
     "id": number,
     "name" : string,
     "price" : number,
