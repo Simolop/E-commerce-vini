@@ -12,64 +12,56 @@ import { IProduct } from 'src/app/model/products';
 })
 
 
-export class ProductsComponent  {
-  products: IProduct[] | undefined;
-  URL = 'http://localhost:3000';
-  public isCollapsed: boolean = true;
-
-  constructor(private http: HttpClient) {
-    this.init();
-  }
- /*  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  } */
-
-  init() {
-    this.http.get<IProduct[]>(this.URL + '/products')
-      .subscribe((res: any[] | undefined) => {
-        this.products = res;
-      });
-  }
-
-}
-
-
-/* export class ProductsComponent implements OnInit {
-  products: Array<IProduct>;
-
-  constructor(private s: ArchiveService) { 
-    this.products = s.listProducts;
-  }
-
-  ngOnInit(): void {
-  }
-
-} */
-
-/* export class ProductsComponent implements OnInit, OnDestroy {
-  products: IProduct | undefined;
-  listProducts: IProduct | undefined;
-
-  imageWidth: number = 50;
-  imageMargin: number = 2;
+export class ProductsComponent implements OnInit, OnDestroy {
+  //products: IProduct[] | undefined;
+  //URL = 'http://localhost:3000';
+  //public isCollapsed: boolean = true;
   errorMessage: string = '';
   sub!: Subscription;
-  ArchiveService: any;
 
-  constructor(private s: ArchiveService) { 
-     this.products= this.listProducts;
+  private _listFilter: string = '';
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string){
+    this._listFilter=value;
+    console.log('In setter:', value);
+    this.filteredProducts = this.performFilter(value);
+  }
+
+  filteredProducts: IProduct[] = [];
+  products: IProduct[] = [];
+
+  constructor(private archiveService: ArchiveService) {
+    //this.init();
+  }
+
+  performFilter(filterBy: string): IProduct[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((product: IProduct) =>
+        product.name.toLocaleLowerCase().includes(filterBy));
   }
 
   ngOnInit(): void {
-    this.sub = this.ArchiveService.getProducts().subscribe({
-        next: (products: IProduct | undefined) => {
-            this.products = products;
-        },
-        error: (err: string) => this.errorMessage = err
+    this.sub = this.archiveService.getProducts().subscribe({
+      next: products => {
+        this.products = products;
+        this.filteredProducts = this.products;
+      },
+      error: err => this.errorMessage = err
     });       
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-} */
+
+  /* init() {
+    this.http.get<IProduct[]>(this.URL + '/products')
+      .subscribe((res: any[] | undefined) => {
+        this.products = res;
+      });
+  }  */
+}
+
+

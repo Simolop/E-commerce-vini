@@ -6,8 +6,7 @@
     "start": "concurrently \"ng serve --proxy-config proxy.conf.json\" \"npx mockettaro -f ./mock\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "server": "json-server --watch server/db.json"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
