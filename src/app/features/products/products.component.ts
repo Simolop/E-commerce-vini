@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, startWith } from 'rxjs/operators';
+import {Component, OnDestroy, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {Subscription } from 'rxjs';
+
 import { ArchiveService } from 'src/app/archive.service';
 import { IProduct } from 'src/app/model/products';
 
@@ -28,18 +28,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private _listFilter: string = '';
 
 
-  categoryForm: FormGroup = new FormBuilder().group({
+  wineForm: FormGroup = new FormBuilder().group({
+    name: [''],
     category: ['']
   })
-
-  nameForm: FormGroup = new FormBuilder().group({
-    inputFilter: ['']
-  })
-  name: any;
-
-
-
-  constructor(private archiveService: ArchiveService) { }
+ 
+  constructor(private archiveService: ArchiveService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.sub = this.archiveService.getProducts().subscribe({
@@ -51,7 +45,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-  performFilter(selectBy: string, textBox: string): void {
+  performFilter(selectBy: string): void {
     this.filteredProducts = this.products.filter((item) => {
       if (selectBy != 'All') {
         return selectBy === item.category;
@@ -63,8 +57,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   selectCategory() {
-    let value = (this.categoryForm.get('category') || {}).value;
-    this.performFilter(value, '');
+    let value = (this.wineForm.get('category') || {}).value;
+    this.performFilter(value);
     console.log('value=', value);
   }
 
@@ -72,14 +66,4 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  filterName() {
-    if (this.name != "") {
-      this.filteredProducts = this.filteredProducts.filter(res => {
-        return res.name.toLocaleLowerCase().match(this.name?.toLocaleLowerCase())
-      });
-    }
-    else if (this.name == "") {
-      this.ngOnInit();
-    }
-  }
 }
