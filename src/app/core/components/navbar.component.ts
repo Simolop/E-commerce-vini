@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +14,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
  
-  constructor() { }
+  clickEventSubscription: Subscription | undefined;
+
+  constructor(private sharedService: SharedService) { 
+    this.clickEventSubscription = this.sharedService.getClickEvent().subscribe(()=>{
+      this.countFunction();
+    });
+  }
+
+  count: number = 0;
+  countFunction(){
+    this.count += 1;
+  }
 
   ngOnInit(): void {
   }

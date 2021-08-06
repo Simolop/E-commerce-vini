@@ -4,6 +4,7 @@ import {Subscription } from 'rxjs';
 
 import { ArchiveService } from 'src/app/archive.service';
 import { IProduct } from 'src/app/model/products';
+import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-products',
@@ -36,7 +37,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   })
   static quantity: any;
  
-  constructor(private archiveService: ArchiveService, private formBuilder: FormBuilder) { }
+  constructor(private archiveService: ArchiveService, private formBuilder: FormBuilder, private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.sub = this.archiveService.getProducts().subscribe({
@@ -70,8 +71,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   addQuantity(){
-    this.quantity += 1;
-    console.log(this.quantity);
+    this.sharedService.addClickEvent();
   }
 
 }
