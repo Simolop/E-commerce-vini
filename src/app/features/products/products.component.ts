@@ -5,6 +5,7 @@ import {Subscription } from 'rxjs';
 import { ArchiveService } from 'src/app/archive.service';
 import { IProduct } from 'src/app/model/products';
 import { SharedService } from 'src/app/shared.service';
+import { CartService } from 'src/app/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -25,7 +26,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   filteredProducts: IProduct[] = [];
   products: IProduct[] = [];
 
-  categories: string[] = ['All', 'red wine', 'white wine', 'rose'];
+  categories: string[] = ['All', 'red wine', 'white wine','rose'];
   private _listFilter: string = '';
 
   quantity = 0;
@@ -37,7 +38,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   })
   static quantity: any;
  
-  constructor(private archiveService: ArchiveService, private formBuilder: FormBuilder, private sharedService: SharedService) { }
+  constructor(private archiveService: ArchiveService, private formBuilder: FormBuilder, private sharedService: SharedService,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     this.sub = this.archiveService.getProducts().subscribe({
@@ -72,6 +74,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   addQuantity(){
     this.sharedService.addClickEvent();
-  }
+  } 
 
 }
