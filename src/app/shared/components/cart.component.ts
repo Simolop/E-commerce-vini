@@ -9,8 +9,8 @@ import { SharedService } from 'src/app/shared.service';
       <h1>Your Cart</h1>
       <p>Your products list:</p>
       <div>
-          Add quantity 
-          <button class="btn btn-primary mx-2" style="background-color: #275572">
+          Confirm quantity 
+          <button class="btn btn-primary mx-2" style="background-color: #275572" (click)="minusFunction()">
             <i class="fa fa-minus"></i>
               </button>
               <span>{{count}}</span>
@@ -38,11 +38,15 @@ export class CartComponent implements OnInit {
     this.count += 1;
   }
 
+  minusFunction(){
+    if (this.count > 0)
+    this.count-=1;
+  }
 
   addQuantity(){
     this.sharedService.addClickEvent();
   }
-
+  
   ngOnInit(): void {
   }
 
