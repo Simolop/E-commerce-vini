@@ -44,9 +44,9 @@ export class CartComponent implements OnInit {
   }
 
   addQuantity(){
-    this.sharedService.addClickEvent();
+    // this.sharedService.addClickEvent();
   }
-  
+   
   ngOnInit(): void {
   }
 

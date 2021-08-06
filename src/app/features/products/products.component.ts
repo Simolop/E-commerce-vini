@@ -72,8 +72,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  addQuantity(){
-    this.sharedService.addClickEvent();
+  addQuantity(product: IProduct){
+    this.sharedService.addClickEvent(product);
   } 
 
 }
