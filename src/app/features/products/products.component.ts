@@ -27,11 +27,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
   categories: string[] = ['All', 'red wine', 'white wine', 'rose'];
   private _listFilter: string = '';
 
+  quantity = 0;
+
 
   wineForm: FormGroup = new FormBuilder().group({
     name: [''],
     category: ['']
   })
+  static quantity: any;
  
   constructor(private archiveService: ArchiveService, private formBuilder: FormBuilder) { }
 
@@ -64,6 +67,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  addQuantity(){
+    this.quantity += 1;
+    console.log(this.quantity);
   }
 
 }

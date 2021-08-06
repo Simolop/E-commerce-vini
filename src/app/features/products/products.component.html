@@ -1,8 +1,7 @@
 <div class="container">
     <h1 class="mt-3 mb-3">Our Wines</h1>
 
-    <div class="d-flex justify-content-center">
-      <form [formGroup]="wineForm">
+      <form [formGroup]="wineForm" class="d-flex justify-content-center">
         <div class= 'row'>
           <div class='col-md-4'> 
             <input class="form-control" type='text' formControlName="name" placeholder="Filter by"/>
@@ -15,7 +14,7 @@
           </select>
         </div>
       </form>
-    </div>
+
 
     <div class='table-responsive'>
       <table class='table'>
@@ -43,12 +42,25 @@
                <div>
                   <p>{{product.description}}</p> 
                </div>
+              <!--  <div>
+                 Add quantity 
+                 <button class="btn btn-primary mx-2" style="background-color: #275572">
+                    <i class="fa fa-minus"></i>
+                 </button>
+                 <span>{{quantity}}</span>
+                 <button class="btn btn-primary mx-2" style="background-color: #275572" (click)="addQuantity()">
+                    <i class="fa fa-plus"></i>
+                 </button>
+               </div> -->
             </td>
             <td class="mr-4"> {{product.price}} €</td> 
             <td>  
-              <button routerLink='/cart' routerLinkActive="active" class="btn btn-primary" 
-                      style="background-color: #275572">
-                      <i class="fs-5 fa fa-shopping-cart"></i>
+              <button class="btn btn-primary" 
+                      style="background-color: #275572"
+                      (click)="addQuantity()">
+                      <div class="d-flex">
+                        <i class="fa fa-cart-plus fs-5"></i>
+                      </div>
               </button>
             </td>
           </tr>
