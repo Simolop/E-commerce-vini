@@ -11,6 +11,8 @@ import { catchError, tap } from 'rxjs/operators';
 export class ArchiveService {
   //listProducts:Array<IProduct>;
   private productUrl = '/api/products/products';
+  cartItems: IProduct[] = [];
+
 
   constructor(private http: HttpClient) { 
     //this.listProducts = [];
@@ -33,7 +35,5 @@ export class ArchiveService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
-  
-
   
 }

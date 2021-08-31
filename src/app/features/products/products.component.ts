@@ -72,8 +72,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  addQuantity(product: IProduct){
+  addItem(product: IProduct){
     this.sharedService.addClickEvent(product);
+    window.alert('Your wine has been added to the cart!');
+    console.log('p',product); 
+    //this.cartService.addToCart(product);
   } 
 
 }

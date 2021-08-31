@@ -1,5 +1,5 @@
 export interface IProduct {
-    product: IProduct[];
+   // product: IProduct[];
     added: boolean;
     visible: boolean;
     "id": number,

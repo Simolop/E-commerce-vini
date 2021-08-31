@@ -9,7 +9,7 @@ import { IProduct } from 'src/app/model/products';
 
 export class WineFilterPipe implements PipeTransform {
   transform(products: IProduct[], inputFilter: string): IProduct[] {
-    console.log("winepipe =", inputFilter);
+    //console.log("winepipe =", inputFilter);
     if (!inputFilter||inputFilter.length <= 3) //true: se null, stringa vuota o 0, o undefined
     { 
       return products;

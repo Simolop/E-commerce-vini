@@ -18,9 +18,8 @@ export class NavbarComponent implements OnInit {
   clickEventSubscription: Subscription | undefined;
 
   constructor(private sharedService: SharedService) { 
-    this.clickEventSubscription = this.sharedService.getClickEvent().subscribe((data: IProduct[]) =>{
+    this.clickEventSubscription = this.sharedService.getClickEvent().subscribe((count: IProduct[]) =>{
       this.countFunction();
-      console.log(data);
     });
   }
 

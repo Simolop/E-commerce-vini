@@ -1,53 +1,91 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/cart.service';
+import { IProduct } from 'src/app/model/products';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-cart',
   template: `
+  <ng-container *ngIf="products.length ==0">
     <div class="container">
-      <h1>Your Cart</h1>
-      <p>Your products list:</p>
-      <div>
-          Confirm quantity 
-          <button class="btn btn-primary mx-2" style="background-color: #275572" (click)="minusFunction()">
-            <i class="fa fa-minus"></i>
-              </button>
-              <span>{{count}}</span>
-              <button class="btn btn-primary mx-2" style="background-color: #275572" (click)="addQuantity()">
-                <i class="fa fa-plus"></i>
-              </button>
+    <router-outlet></router-outlet>
+
+      <div class="text-center mt-4">
+          <h2 class="mb-3">Your cart is empty</h2>
+          <button class="btn btn-primary" style="background-color: #275572" 
+          routerLink='/products' routerLinkActive="active">
+            Go to products
+        </button>
       </div>
     </div>
+  </ng-container>
+
+  <ng-container *ngIf="products.length !=0">
+  <div class="container">
+     <router-outlet></router-outlet>
+      <h1 class="mt-3 mb-3">Your Cart</h1>
+      <div class="d-flex justify-content-evenly flex-wrap">
+        <div class="card me-3 mb-3" style="width: 18rem;" *ngFor="let p of products">
+          <div class="card-body text-center">
+            <img [src]="p.image" [width]="150"  class="card-img-top" [alt]="p.name"> 
+            <h5 class="card-title">{{ p.name }}</h5>
+            <p class="card-text">Price: {{ p.price }} €</p>
+            <p class="card-text">Category: {{ p.category }}</p>
+            <p class="card-text">Quantity: {{ p.quantity }}</p>
+            <a routerLink='/cart' class="btn btn-success me-3">
+              <i class="fa fa-check-circle"></i>
+            </a>
+            <a routerLink='/cart' (click)="removeItem(product)" class="btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+    
   `,
-  styles: [
+  styles: [ 
+    `.card-img, .card-img-bottom, .card-img-top {
+      width: 100px;
+      height: 150px;
+    } `
   ]
 })
+
 export class CartComponent implements OnInit {
 
+  products : IProduct[] = [];
+  product: any;
+  //products = this.sharedService.getProducts();
   clickEventSubscription: Subscription | undefined;
+  count: number = 0;
 
-  constructor(private sharedService: SharedService) { 
-    this.clickEventSubscription = this.sharedService.getClickEvent().subscribe(()=>{
+  constructor(private cartService: CartService, private sharedService: SharedService) {
+    this.clickEventSubscription = this.cartService.getItemEvent().subscribe(()=>{
       this.countFunction();
     });
   }
-
-  count: number = 0;
-  countFunction(){
+  countFunction() {
     this.count += 1;
   }
 
-  minusFunction(){
-    if (this.count > 0)
-    this.count-=1;
-  }
-
   addQuantity(){
-    // this.sharedService.addClickEvent();
-  }
-   
-  ngOnInit(): void {
+    this.cartService.addItemEvent();
   }
 
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.products = this.sharedService.getProducts();
+    console.log(this.products);
+  }
+
+  removeItem(product: IProduct){
+    this.cartService.removeItemCart(product);
+  }
+  
 }

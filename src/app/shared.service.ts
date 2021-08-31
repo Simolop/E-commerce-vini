@@ -10,9 +10,11 @@ export class SharedService {
   items: IProduct[] = [];
 
   private subject = new Subject<IProduct[]>();
+
+  constructor() { }
   
   addClickEvent(product: IProduct) {
-    this.items.push(product)
+    this.items.push(product);
     this.subject.next(this.items);
   }
 
@@ -20,5 +22,8 @@ export class SharedService {
     return this.subject.asObservable();
   }
 
-  constructor() { }
+  getProducts() : IProduct[] {
+    return this.items;
+  }
+
 }
