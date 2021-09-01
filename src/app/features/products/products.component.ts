@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {FormBuilder, FormGroup } from '@angular/forms';
 import {Subscription } from 'rxjs';
-
 import { ArchiveService } from 'src/app/archive.service';
 import { IProduct } from 'src/app/model/products';
 import { SharedService } from 'src/app/shared.service';
@@ -78,5 +77,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
     console.log('p',product); 
     //this.cartService.addToCart(product);
   } 
+
+  inc(product: IProduct){
+    if (product.quantity != 7)
+    product.quantity += 1;
+  }
+
+  dec(product: IProduct){
+    if (product.quantity != 1)
+        product.quantity -= 1;
+  }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/cart.service';
 import { IProduct } from 'src/app/model/products';
@@ -10,7 +10,7 @@ import { SharedService } from 'src/app/shared.service';
   <ng-container *ngIf="products.length ==0">
     <div class="container">
     <router-outlet></router-outlet>
-
+ 
       <div class="text-center mt-4">
           <h2 class="mb-3">Your cart is empty</h2>
           <button class="btn btn-primary" style="background-color: #275572" 
@@ -36,9 +36,9 @@ import { SharedService } from 'src/app/shared.service';
             <a routerLink='/cart' class="btn btn-success me-3">
               <i class="fa fa-check-circle"></i>
             </a>
-            <a routerLink='/cart' (click)="removeItem(product)" class="btn btn-danger">
+            <button routerLink='/cart' (click)="removeItem(product)" class="btn btn-danger">
               <i class="fa fa-trash"></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -57,7 +57,9 @@ import { SharedService } from 'src/app/shared.service';
 export class CartComponent implements OnInit {
 
   products : IProduct[] = [];
+
   product: any;
+  
   //products = this.sharedService.getProducts();
   clickEventSubscription: Subscription | undefined;
   count: number = 0;
@@ -86,6 +88,8 @@ export class CartComponent implements OnInit {
 
   removeItem(product: IProduct){
     this.cartService.removeItemCart(product);
+    console.log(product)
   }
+
   
 }

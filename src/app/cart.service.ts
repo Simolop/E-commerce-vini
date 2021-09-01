@@ -28,6 +28,7 @@ export class CartService {
     addToCart(product: IProduct) {
         this.products.push(product);
     }
+    
 
     getProducts() {
       return this.products;
@@ -39,6 +40,10 @@ export class CartService {
           this.products.splice(index,1);
         }
       })
+      this.subject.next(this.products);
     }
+
+    
+    
 
   }
