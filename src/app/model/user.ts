@@ -1,8 +1,10 @@
 export interface IUser {
     "id": number,
     "name" : string,
-    "lastName" : string,
-    "email" : string,
-    "password" : string,
-    "city": string
+    "surname" : string,
+    "phoneNumber" : number,
+    "address" : string,
+    "email": string,
+    "country": string,
+    "state": string
 }
