@@ -15,7 +15,7 @@ import { CartComponent } from './shared/components/cart.component';
   imports: [
     CoreModule,
     AppRoutingModule,
-    RouterModule, 
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -26,7 +26,7 @@ import { SharedService } from 'src/app/shared.service';
      <router-outlet></router-outlet>
       <h1 class="mt-3 mb-3">Your Cart</h1>
       <div class="d-flex justify-content-evenly flex-wrap">
-        <div class="card me-3 mb-3" style="width: 18rem;" *ngFor="let p of products">
+        <div class="card me-3 mb-3" style="width: 18rem;" *ngFor="let p of products; index as i">
           <div class="card-body text-center">
             <img [src]="p.image" [width]="150"  class="card-img-top" [alt]="p.name"> 
             <h5 class="card-title">{{ p.name }}</h5>
@@ -36,7 +36,7 @@ import { SharedService } from 'src/app/shared.service';
             <a routerLink='/cart' class="btn btn-success me-3">
               <i class="fa fa-check-circle"></i>
             </a>
-            <button routerLink='/cart' (click)="removeItem(product)" class="btn btn-danger">
+            <button routerLink='/cart' (click)="removeItem(i)" class="btn btn-danger">
               <i class="fa fa-trash"></i>
             </button>
           </div>
@@ -86,9 +86,13 @@ export class CartComponent implements OnInit {
     console.log(this.products);
   }
 
-  removeItem(product: IProduct){
+  /* removeItem(product: IProduct){
     this.cartService.removeItemCart(product);
     console.log(product)
+  }  */
+
+  removeItem(del: any) {
+    this.products.splice(del, 1);
   }
 
   

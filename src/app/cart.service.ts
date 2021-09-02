@@ -28,22 +28,17 @@ export class CartService {
     addToCart(product: IProduct) {
         this.products.push(product);
     }
-    
-
+ 
     getProducts() {
       return this.products;
     }
 
-    removeItemCart(product: IProduct) {
+    /* removeItemCart(product: IProduct) {
       this.products.map((a: any, index: any)=>{
         if(product.id === a.id){
           this.products.splice(index,1);
         }
       })
-      this.subject.next(this.products);
-    }
-
-    
-    
+    } */
 
   }
