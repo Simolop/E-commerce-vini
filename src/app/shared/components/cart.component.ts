@@ -11,13 +11,18 @@ import { SharedService } from 'src/app/shared.service';
     <div class="container">
     <router-outlet></router-outlet>
  
-      <div class="text-center mt-4">
-          <h2 class="mb-3">Your cart is empty</h2>
-          <button class="btn btn-primary" style="background-color: #275572" 
-          routerLink='/products' routerLinkActive="active">
-            Go to products
-        </button>
+      <div class="d-flex justify-content-center mt-5">
+        <div class="text-center card" style="width: 25rem; height: 14rem">
+            <div class="card-body">
+              <h2 class="mb-5">Your cart is empty</h2>
+                <button class="btn btn-primary" style="background-color: #275572" 
+                routerLink='/products' routerLinkActive="active">
+                  Go to products
+              </button>
+            </div>
+          </div>
       </div>
+      
     </div>
   </ng-container>
 
